@@ -1,0 +1,31 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Categoría</th>
+            <th>Fecha de Creación</th>
+            <th>Editar / Eliminar</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let product of productosAll?.products">
+            <td>{{ product._id }}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.description }}</td>
+            <td>{{ product.price | currency }}</td>
+            <td>{{ product.stock }}</td>
+            <td>{{ product.category }}</td>
+            <td>{{ product.createdAt | date: 'short' }}</td>
+            <td>
+                <button type="button" class="btn btn-success me-2" (click)="modal.open(product)"><i class="bi bi-pencil-fill"></i></button>
+                <button type="button" class="btn btn-danger" (click)="eliminar(product._id!)"><i class="bi bi-file-earmark-x-fill"></i></button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<app-modal-editar (eventAcc)="actualizar()"></app-modal-editar>
